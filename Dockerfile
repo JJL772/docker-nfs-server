@@ -1,17 +1,14 @@
 # syntax=docker/dockerfile:1.4
 
-FROM alpine:3.18
+FROM ubuntu:20.04
 
 ENV LANG en_US.utf8
 
 ENV NFS_SERVER_DEBUG "0"
 ENV NFS_SERVER_ALLOWED_CLIENTS "172.16.0.0/12"
 
-RUN <<EOF
-    set -eu
-
-    apk add --no-cache nfs-utils
-EOF
+#RUN yum install -y nfs-utils
+RUN apt-get update && apt-get install -y nfs-kernel-server 
 
 EXPOSE 2049
 
